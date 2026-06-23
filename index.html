@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Barshan Adhikari — AI & ML Student</title>
+  <meta name="description" content="Barshan Adhikari — AI & ML Student & IEEE-published researcher. Computer Vision, Deep Learning, Explainable AI."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body class="dark-theme">
+
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <div class="loader-bar"></div>
+    <div class="loader-text">
+      <span class="loader-name scramble-text">BARSHAN ADHIKARI</span>
+      <span class="loader-pct" id="loaderPct">0</span>
+    </div>
+  </div>
+
+  <!-- SIDE NAV -->
+  <aside class="sidenav" id="sidenav">
+    <a href="#hero" class="sn-logo" id="snLogo">
+      <span class="sn-logo-b">B</span><span class="sn-logo-a">A</span>
+    </a>
+    <nav class="sn-links">
+      <a href="#about"      class="sn-link" data-label="About"       id="snAbout">01</a>
+      <a href="#work"       class="sn-link" data-label="Experience"  id="snWork">02</a>
+      <a href="#projects"   class="sn-link" data-label="Projects"    id="snProjects">03</a>
+      <a href="#research"   class="sn-link" data-label="Research"    id="snResearch">04</a>
+      <a href="#skills"     class="sn-link" data-label="Skills"      id="snSkills">05</a>
+      <a href="#contact"    class="sn-link" data-label="Contact"     id="snContact">06</a>
+    </nav>
+    <div class="sn-bottom">
+      <button class="sn-icon theme-toggle" id="themeToggleDesk" aria-label="Toggle Theme">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <a href="https://github.com/NEW-HABIT" target="_blank" rel="noopener" class="sn-icon scramble-text" aria-label="GitHub">GH</a>
+      <a href="https://linkedin.com/in/Barshan-adhikari" target="_blank" rel="noopener" class="sn-icon scramble-text" aria-label="LinkedIn">IN</a>
+      <a href="mailto:barshanadhikari181@gmail.com" class="sn-icon scramble-text" aria-label="Email">@</a>
+    </div>
+  </aside>
+
+  <!-- MOBILE HEADER -->
+  <header class="mob-header" id="mobHeader">
+    <a href="#hero" class="mob-brand">BA</a>
+    <div class="mob-actions">
+      <button class="theme-toggle" id="themeToggleMob" aria-label="Toggle Theme">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <button class="mob-toggle" id="mobToggle" aria-label="Menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE DRAWER -->
+  <div class="mob-drawer" id="mobDrawer">
+    <nav class="md-links">
+      <a href="#about"    class="md-link">About</a>
+      <a href="#work"     class="md-link">Experience</a>
+      <a href="#projects" class="md-link">Projects</a>
+      <a href="#research" class="md-link">Research</a>
+      <a href="#skills"   class="md-link">Skills</a>
+      <a href="#contact"  class="md-link">Contact</a>
+    </nav>
+  </div>
+
+  <!-- CUSTOM CURSOR -->
+  <div class="cur-dot" id="curDot"></div>
+  <div class="cur-ring" id="curRing"></div>
+
+  <!-- ═══════ MAIN CONTENT ═══════ -->
+  <main class="main" id="main">
+
+    <!-- ░ HERO ░ -->
+    <section class="hero" id="hero">
+      <div class="hero-top">
+        <span class="hero-tag anim-fade">AI &amp; ML Student</span>
+        <span class="hero-location anim-fade" style="--d:0.1s">West Bengal, India</span>
+      </div>
+
+      <div class="hero-name-wrap">
+        <h1 class="hero-name reveal anim-name">
+          <span class="hn-line hover-scramble-word scramble-text" data-text="BARSHAN">BARSHAN</span>
+          <span class="hn-line accent hover-scramble-word scramble-text" data-text="ADHIKARI">ADHIKARI</span>
+        </h1>
+        <div class="hero-img-inset anim-fade" style="--d:0.4s">
+          <div class="hii-placeholder">BA</div>
+          <div class="hii-label">
+            <span class="hii-dot"></span>
+            <span>Available</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-bottom">
+        <p class="hero-desc anim-slide-up" style="--d:0.3s">
+          Building models that don't just predict —<br/>they <em>explain</em> themselves.
+          IEEE-published. Computer Vision. XAI.
+        </p>
+        <div class="hero-actions anim-fade" style="--d:0.5s">
+          <a href="#projects" class="btn-lime hover-scramble">See My Work ↓</a>
+          <a href="#contact"  class="btn-text hover-scramble">Get in Touch →</a>
+        </div>
+      </div>
+
+      <div class="hero-strip">
+        <div class="hero-strip-inner">
+          <span>Python</span><span class="dot">·</span><span>PyTorch</span><span class="dot">·</span><span>TensorFlow</span><span class="dot">·</span><span>OpenCV</span><span class="dot">·</span><span>Vision Transformers</span><span class="dot">·</span><span>Explainable AI</span><span class="dot">·</span><span>Deep Learning</span><span class="dot">·</span><span>Computer Vision</span><span class="dot">·</span><span>Python</span><span class="dot">·</span><span>PyTorch</span><span class="dot">·</span><span>TensorFlow</span><span class="dot">·</span><span>OpenCV</span><span class="dot">·</span><span>Vision Transformers</span><span class="dot">·</span><span>Explainable AI</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░ ABOUT ░ -->
+    <section class="pg-section" id="about">
+      <div class="pg-inner">
+        <div class="pg-label">
+          <span class="pg-num">01</span>
+          <span class="pg-title">About</span>
+        </div>
+        <div class="about-layout">
+          <div class="about-big-text">
+            <h2 class="about-heading split-lines">
+              I make AI<br/>
+              <em>legible.</em>
+            </h2>
+          </div>
+          <div class="about-detail reveal">
+            <p class="body-text anim-lines">
+              I engineer AI systems that are as <strong>transparent</strong> as they are accurate. As a final-year AI &amp; Machine Learning student at The Neotia University, my core focus is Explainable AI (XAI) — ensuring that complex models provide not just predictions, but clear, interpretable reasoning.
+            </p>
+            <p class="body-text anim-lines" style="--d:0.1s">
+              I've published at the <strong>IEEE International Conference 2025</strong>, interned as an AI/ML engineer and a cybersecurity analyst, and built healthcare &amp; agriculture AI systems that real users can trust.
+            </p>
+
+            <div class="about-edu reveal" style="--d:0.2s">
+              <div class="edu-row">
+                <div class="edu-row-left">
+                  <span class="edu-icon">↗</span>
+                  <div class="edu-info">
+                    <strong>B.Tech — CSE (AI &amp; ML)</strong>
+                    <span>The Neotia University · 2023–2027 · CGPA 8.63</span>
+                  </div>
+                </div>
+              </div>
+              <div class="edu-row">
+                <div class="edu-row-left">
+                  <span class="edu-icon">↗</span>
+                  <div class="edu-info">
+                    <strong>Higher Secondary — PCMB</strong>
+                    <span>Chhotobainian High School · 2021–2023 · Grade A</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="kpi-row reveal" style="--d:0.3s">
+              <div class="kpi-box">
+                <div class="kpi-val-wrap"><span class="kpi-big" data-to="3">0</span><span class="kpi-sym">+</span></div>
+                <span class="kpi-lbl">Projects</span>
+              </div>
+              <div class="kpi-box">
+                <div class="kpi-val-wrap"><span class="kpi-big" data-to="2">0</span></div>
+                <span class="kpi-lbl">Internships</span>
+              </div>
+              <div class="kpi-box">
+                <div class="kpi-val-wrap"><span class="kpi-big" data-to="1">0</span></div>
+                <span class="kpi-lbl">IEEE Paper</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░ EXPERIENCE ░ -->
+    <section class="pg-section pg-dark" id="work">
+      <div class="pg-inner">
+        <div class="pg-label">
+          <span class="pg-num">02</span>
+          <span class="pg-title">Experience</span>
+        </div>
+
+        <div class="exp-list">
+          <div class="exp-item reveal">
+            <div class="exp-item-left">
+              <span class="exp-co">GrowthLink</span>
+              <span class="exp-period">Jun – Jul 2025</span>
+            </div>
+            <div class="exp-item-right">
+              <div class="exp-role-row">
+                <h3 class="exp-role">AI / ML Intern</h3>
+                <span class="exp-tag ai">AI / ML</span>
+              </div>
+              <div class="exp-project">Movie Recommendation Model</div>
+              <ul class="exp-list-bullets">
+                <li>Designed a recommendation system using <strong>collaborative &amp; content-based filtering</strong> — achieved <span class="lime-text">80% RMSE reduction</span>.</li>
+                <li>Optimised feature engineering and preprocessing pipelines in Python for lower latency and higher precision.</li>
+              </ul>
+              <div class="exp-chips">
+                <span>Python</span><span>Collaborative Filtering</span><span>Feature Engineering</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-item reveal" style="--d:.08s">
+            <div class="exp-item-left">
+              <span class="exp-co">Dataspace Academy</span>
+              <span class="exp-period">Jun – Jul 2024</span>
+            </div>
+            <div class="exp-item-right">
+              <div class="exp-role-row">
+                <h3 class="exp-role">Cyber Security Intern</h3>
+                <span class="exp-tag sec">Security</span>
+              </div>
+              <ul class="exp-list-bullets">
+                <li>Conducted <strong>vulnerability assessments</strong> and network traffic analysis to proactively mitigate threats.</li>
+                <li>Documented critical vulnerabilities using <strong>industry-standard tools</strong> — provided incident-response action plans.</li>
+              </ul>
+              <div class="exp-chips">
+                <span>Vulnerability Assessment</span><span>Network Analysis</span><span>Risk Assessment</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░ PROJECTS ░ -->
+    <section class="pg-section" id="projects">
+      <div class="pg-inner">
+        <div class="pg-label">
+          <span class="pg-num">03</span>
+          <span class="pg-title">Projects</span>
+        </div>
+
+        <!-- Project 01 — FEATURED -->
+        <div class="proj-hero reveal proj-trigger" 
+             data-num="Project 01" 
+             data-title="Tomato & Potato Quality Checker"
+             data-tech="Vision Transformer,XAI / SHAP,PyTorch,OpenCV"
+             data-desc="Presented at the IEEE International Conference on Computing and Communications 2025. This project introduces a Vision Transformer model enhanced with Explainable AI techniques to classify crop quality. By integrating SHAP, we generated visual explanations that help farmers and domain experts understand and trust the model's decisions, rather than relying on a 'black box'."
+             data-gh="https://github.com/NEW-HABIT/TOMATO-POTATO_QUALITY_CHECKER"
+             data-demo="https://huggingface.co/spaces/NEW-HABIT/Crop-Checker">
+          <div class="ph-meta">
+            <span class="ph-num">Project 01</span>
+            <span class="ph-acc">Deep Learning</span>
+          </div>
+          <div class="ph-body">
+            <div class="ph-text">
+              <h2 class="ph-title hover-scramble-word">Tomato &amp; Potato<br/>Quality Checker</h2>
+              <p class="ph-desc">
+                Vision Transformer (ViT) model that classifies crop quality. Integrated Explainable AI (XAI) to increase model transparency — published at IEEE Computing 2025.
+              </p>
+              <div class="ph-tech">
+                <span>Vision Transformer</span><span>XAI / SHAP</span><span>PyTorch</span>
+              </div>
+              <div class="ph-link">Explore Case Study →</div>
+            </div>
+            <div class="ph-img-placeholder">
+              <div class="img-content">[ Vision Transformer UI Preview ]</div>
+              <div class="ph-img-label">IEEE Published · 2025</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 02 + 03 — GRID -->
+        <div class="proj-grid-2">
+          <div class="proj-card-b reveal proj-trigger" style="--d:.05s"
+               data-num="Project 02" 
+               data-title="Vegetable & Fruit Classifier"
+               data-tech="CNN,MobileNetV2,TensorFlow,OpenCV"
+               data-desc="A robust Multi-class CNN model utilizing MobileNetV2 architecture. Trained extensively to identify over 30 different classes of fruits and vegetables with high precision. The model is optimized for mobile deployment, ensuring fast inference times across diverse lighting conditions and environments without sacrificing performance."
+               data-gh="https://github.com/NEW-HABIT/VEGETABLE-FRUIT-CLASSIFIER"
+               data-demo="">
+            <div class="pcb-number">02</div>
+            <div class="pcb-img-placeholder">
+               <div class="img-content">[ Veg & Fruit Classifier CNN ]</div>
+            </div>
+            <h3 class="pcb-title hover-scramble-word">Vegetable &amp; Fruit Classifier</h3>
+            <p class="pcb-desc">Multi-class CNN (MobileNetV2/VGG) model trained to identify 30+ fruits and vegetables with high precision.</p>
+            <div class="pcb-tech"><span>CNN</span><span>MobileNetV2</span><span>TensorFlow</span></div>
+            <div class="pcb-link">Explore Case Study →</div>
+          </div>
+
+          <div class="proj-card-b reveal proj-trigger" style="--d:.12s"
+               data-num="Project 03" 
+               data-title="Eye Cancer Prediction"
+               data-tech="Deep Learning,Streamlit,Object Detection,Python"
+               data-desc="A clinical-grade deep learning retinal scan analyser designed for early detection of eye cancer. It features 40% faster processing compared to baseline models, 25% better tumor localisation, and reduces manual diagnosis time by 20%. The entire pipeline is wrapped in an accessible Streamlit web application for easy use by medical professionals."
+               data-gh="https://github.com/NEW-HABIT/EYE-CANCER-PREDICTION-MODEL"
+               data-demo="https://eye-cancer-prediction.streamlit.app/">
+            <div class="pcb-number">03</div>
+            <div class="pcb-img-placeholder eye">
+                <div class="img-content">[ Eye Cancer Retina Scan AI ]</div>
+            </div>
+            <div class="pcb-badge">Healthcare AI</div>
+            <h3 class="pcb-title hover-scramble-word">Eye Cancer Prediction</h3>
+            <p class="pcb-desc">Deep learning retinal scan analyser with 40% faster processing and 25% better localisation. Deployed on Streamlit.</p>
+            <div class="pcb-tech"><span>Deep Learning</span><span>Streamlit</span></div>
+            <div class="pcb-link">Explore Case Study →</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░ RESEARCH ░ -->
+    <section class="pg-section pg-dark" id="research">
+      <div class="pg-inner">
+        <div class="pg-label">
+          <span class="pg-num">04</span>
+          <span class="pg-title">Research</span>
+        </div>
+
+        <div class="research-block reveal">
+          <div class="rb-left">
+            <span class="rb-venue scramble-text">IEEE · COMPUTINGCON · 2025</span>
+            <div class="rb-stats">
+              <div class="rb-stat"><span class="rb-val">ViT</span><span class="rb-key">Architecture</span></div>
+              <div class="rb-stat"><span class="rb-val">XAI</span><span class="rb-key">Interpretable</span></div>
+            </div>
+            <a href="https://doi.org/10.1109/COMPUTINGCON64838.2025.11376762" target="_blank" rel="noopener" class="rb-doi hover-scramble">
+              DOI: 10.1109/COMPUTINGCON<br/>64838.2025.11376762 ↗
+            </a>
+          </div>
+          <div class="rb-right">
+            <h2 class="rb-title split-lines">
+              An Explainable Deep Learning Approach for Quality Assessment in Solanaceous Crops
+            </h2>
+            <p class="rb-abstract anim-lines" style="--d:0.2s">
+              This paper introduces a <strong>Vision Transformer</strong> model enhanced with
+              <strong>Explainable AI</strong> techniques to classify Tomato and Potato quality —
+              generating visual explanations that help farmers and domain experts understand and trust the model's decisions.
+            </p>
+            <div class="rb-tags reveal" style="--d:0.3s">
+              <span>Vision Transformer</span><span>Explainable AI</span><span>Image Classification</span><span>Agriculture AI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░ SKILLS ░ -->
+    <section class="pg-section" id="skills">
+      <div class="pg-inner">
+        <div class="pg-label">
+          <span class="pg-num">05</span>
+          <span class="pg-title">Skills</span>
+        </div>
+
+        <!-- Bento Grid -->
+        <div class="bento">
+          <div class="bento-cell bc-wide reveal">
+            <div class="bc-label">Languages</div>
+            <div class="bc-bars">
+              <div class="bcb"><span>Python</span><div class="bcbar"><div class="bcfill" data-w="95"></div></div><span class="bcpct">95</span></div>
+              <div class="bcb"><span>C++</span><div class="bcbar"><div class="bcfill" data-w="70"></div></div><span class="bcpct">70</span></div>
+              <div class="bcb"><span>Java</span><div class="bcbar"><div class="bcfill" data-w="65"></div></div><span class="bcpct">65</span></div>
+              <div class="bcb"><span>SQL</span><div class="bcbar"><div class="bcfill" data-w="75"></div></div><span class="bcpct">75</span></div>
+            </div>
+          </div>
+          <div class="bento-cell bc-tall reveal" style="--d:.06s">
+            <div class="bc-label">AI / ML</div>
+            <div class="bc-pill-grid">
+              <span class="bc-pill big">TensorFlow</span>
+              <span class="bc-pill big">PyTorch</span>
+              <span class="bc-pill big">Keras</span>
+              <span class="bc-pill">Scikit-learn</span>
+              <span class="bc-pill">Pandas</span>
+            </div>
+          </div>
+          <div class="bento-cell reveal" style="--d:.1s">
+            <div class="bc-label">Computer Vision</div>
+            <div class="bc-pill-grid">
+              <span class="bc-pill big">OpenCV</span>
+              <span class="bc-pill">MediaPipe</span>
+              <span class="bc-pill">Detectron2</span>
+              <span class="bc-pill">YOLO</span>
+            </div>
+          </div>
+          <div class="bento-cell reveal" style="--d:.08s">
+            <div class="bc-label">Tools</div>
+            <div class="bc-pill-grid">
+              <span class="bc-pill big">Git / GitHub</span>
+              <span class="bc-pill big">Streamlit</span>
+              <span class="bc-pill">Linux</span>
+            </div>
+          </div>
+          <div class="bento-cell bc-dark reveal" style="--d:.12s">
+            <div class="bc-label">Core Concepts</div>
+            <div class="bc-concept-list">
+              <span class="hover-scramble">↗ Deep Learning</span>
+              <span class="hover-scramble">↗ Explainable AI</span>
+              <span class="hover-scramble">↗ Vision Transformers</span>
+              <span class="hover-scramble">↗ NLP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░ CONTACT ░ -->
+    <section class="pg-section pg-dark" id="contact">
+      <div class="pg-inner">
+        <div class="pg-label">
+          <span class="pg-num">06</span>
+          <span class="pg-title">Contact</span>
+        </div>
+
+        <div class="contact-layout reveal">
+          <div class="contact-left">
+            <h2 class="contact-big split-lines">
+              Let's work<br/>
+              <em>together.</em>
+            </h2>
+            <div class="avail-badge reveal" style="--d:0.2s">
+              <span class="avail-dot"></span>
+              Open to opportunities
+            </div>
+          </div>
+          <div class="contact-right reveal" style="--d:0.3s">
+            <a href="mailto:barshanadhikari181@gmail.com" class="citem">
+              <span class="ci-label">Email</span>
+              <span class="ci-val hover-scramble">barshanadhikari181@gmail.com</span>
+              <span class="ci-arr">↗</span>
+            </a>
+            <a href="https://linkedin.com/in/Barshan-adhikari" target="_blank" rel="noopener" class="citem">
+              <span class="ci-label">LinkedIn</span>
+              <span class="ci-val hover-scramble">Barshan-adhikari</span>
+              <span class="ci-arr">↗</span>
+            </a>
+            <a href="https://github.com/NEW-HABIT" target="_blank" rel="noopener" class="citem">
+              <span class="ci-label">GitHub</span>
+              <span class="ci-val hover-scramble">NEW-HABIT</span>
+              <span class="ci-arr">↗</span>
+            </a>
+            <div class="citem no-link">
+              <span class="ci-label">Phone</span>
+              <span class="ci-val">+91 85380 45242</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bar">
+          <span class="fb-name">Barshan Adhikari © 2025</span>
+          <span class="fb-made">Handcrafted Editorial Portfolio</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ░ MODAL OVERLAY FOR PROJECTS ░ -->
+  <div class="modal" id="projModal">
+    <div class="modal-bg" id="modalBg"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div class="mc-left">
+        <div class="mc-img-placeholder" id="mcImg">
+          <div class="img-content" id="mcImgText">[ Preview ]</div>
+        </div>
+      </div>
+      <div class="mc-right">
+        <div class="mc-num" id="mcNum">Project</div>
+        <h2 class="mc-title" id="mcTitle">Title</h2>
+        <div class="mc-tech" id="mcTech"></div>
+        <div class="mc-divider"></div>
+        <p class="mc-desc" id="mcDesc">Description...</p>
+        <div class="mc-links">
+          <a href="#" target="_blank" rel="noopener" id="mcDemo" class="btn-lime hover-scramble">Live Demo ↗</a>
+          <a href="#" target="_blank" rel="noopener" id="mcGithub" class="btn-text hover-scramble">GitHub Repository ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
