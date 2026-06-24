@@ -35,19 +35,19 @@
 }
 
 body.light-theme {
-  --bg:         #f0f4f8; /* bluish white mix */
-  --bg-dark:    #e2e8f0; /* bluish grey */
-  --bg-card:    #ffffff;
-  --bg-card-h:  #f8fafc;
+  --bg:         #aab4be; /* bluish white mix */
+  --bg-dark:    #e2e8f056; /* bluish grey */
+  --bg-card:    #98d2e5;
+  --bg-card-h:  #f8fafcc0;
 
-  --text:       #1e293b;
-  --text-muted: #475569;
+  --text:       #0e2446;
+  --text-muted: #067dfb;
   --text-dim:   #64748b;
   
-  --lime:       #99cc00;
+  --lime:       #ff0000;
   --lime-dim:   rgba(153, 204, 0, 0.15);
   
-  --border:     #cbd5e1;
+  --border:     #416085;
   --border-l:   #94a3b8;
   
   --grad-1:     #475569; /* bluish grey */
@@ -324,7 +324,7 @@ body.hovering .cur-ring {
 .img-content { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 0.8rem; color: var(--border-l); text-align: center; padding: 1rem; }
 .ph-img-label { position: absolute; bottom: 1rem; right: 1rem; background: var(--bg); border: 1px solid var(--border); padding: 0.4rem 0.8rem; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); transition: background 0.3s, border-color 0.3s; }
 
-.proj-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.proj-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;margin-bottom: 2rem; }
 .proj-card-b { border: 1px solid var(--border); background: var(--bg-card); padding: 2rem; display: flex; flex-direction: column; transition: border-color 0.3s, transform 0.3s, background 0.3s; }
 .proj-card-b:hover { border-color: var(--border-l); transform: translateY(-4px); }
 .pcb-number { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; transition: border-color 0.3s; }
@@ -337,6 +337,8 @@ body.hovering .cur-ring {
 .pcb-tech span { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-dim); border: 1px solid var(--border); padding: 0.2rem 0.5rem; transition: border-color 0.3s; }
 .pcb-link { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text); transition: color 0.3s; border-bottom: 1px solid var(--border); padding-bottom: 4px; align-self: flex-start; }
 .proj-card-b:hover .pcb-link { color: var(--lime); border-color: var(--lime); }
+
+.proj-grid-3 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
 
 /* ═════ MODAL ═════ */
 .modal { position: fixed; inset: 0; z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s; padding: 2rem; }
