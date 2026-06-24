@@ -93,16 +93,34 @@ const curRing = document.getElementById('curRing');
 if (curDot && curRing && matchMedia('(pointer: fine)').matches) {
   let mx = 0, my = 0; // Mouse Target
   let rx = 0, ry = 0; // Ring Current Pos
+  let lastSpawn = 0;
   
   document.addEventListener('mousemove', e => {
     mx = e.clientX;
     my = e.clientY;
     // Dot follows instantly
     curDot.style.transform = `translate3d(${mx}px, ${my}px, 0) translate(-50%, -50%)`;
+    
+    // Light Sprinkle Effect
+    const now = performance.now();
+    if (now - lastSpawn > 40) { // throttle spawn
+      lastSpawn = now;
+      const sprinkle = document.createElement('div');
+      sprinkle.className = 'cur-sprinkle';
+      sprinkle.style.left = `${mx}px`;
+      sprinkle.style.top = `${my}px`;
+      
+      const angle = Math.random() * Math.PI * 2;
+      const dist = Math.random() * 20 + 10;
+      sprinkle.style.setProperty('--tx', `${Math.cos(angle) * dist}px`);
+      sprinkle.style.setProperty('--ty', `${Math.sin(angle) * dist + 15}px`); // falling slightly
+      
+      document.body.appendChild(sprinkle);
+      setTimeout(() => sprinkle.remove(), 600);
+    }
   });
 
   const renderCursor = () => {
-    // Lerp ring towards mouse position
     rx += (mx - rx) * 0.15;
     ry += (my - ry) * 0.15;
     curRing.style.transform = `translate3d(${rx}px, ${ry}px, 0) translate(-50%, -50%)`;
@@ -113,18 +131,109 @@ if (curDot && curRing && matchMedia('(pointer: fine)').matches) {
   // Attach hover to interactive elements dynamically
   const setupCursor = () => {
     const hoverTargets = document.querySelectorAll('a, button, .bento-cell, .proj-card-b, .proj-hero, .hero-img-inset, .proj-trigger, .theme-toggle');
+    const addHover = () => document.body.classList.add('hovering');
+    const rmHover = () => document.body.classList.remove('hovering');
+    
     hoverTargets.forEach(el => {
-      // prevent duplicate listeners
-      el.removeEventListener('mouseenter', addHover);
-      el.removeEventListener('mouseleave', rmHover);
       el.addEventListener('mouseenter', addHover);
       el.addEventListener('mouseleave', rmHover);
     });
   };
-  const addHover = () => document.body.classList.add('hovering');
-  const rmHover = () => document.body.classList.remove('hovering');
-  
   setupCursor();
+}
+
+/* ─── 2.5 3D PROJECT CARD TILT ─── */
+// We disable this for .carousel-card to prevent transform conflicts.
+document.querySelectorAll('.proj-card-b:not(.carousel-card), .proj-hero').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateX = ((y - centerY) / centerY) * -5; // Max 5 degrees
+    const rotateY = ((x - centerX) / centerX) * 5;
+    
+    card.style.transition = 'transform 0.1s ease-out, box-shadow 0.1s ease-out';
+    card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    card.style.zIndex = '10'; // Bring to front while tilting
+    card.style.boxShadow = `${-rotateY * 2}px ${rotateX * 2 + 10}px 30px rgba(0, 0, 0, 0.4)`;
+  });
+  
+  card.addEventListener('mouseleave', () => {
+    card.style.transition = 'transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.6s ease';
+    card.style.transform = `perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+    card.style.zIndex = '1';
+    card.style.boxShadow = 'none';
+  });
+});
+
+/* ─── 2.6 3D CAROUSEL LOGIC ─── */
+const carouselContainer = document.getElementById('carouselContainer');
+const carouselSpinner = document.getElementById('carouselSpinner');
+if (carouselContainer && carouselSpinner) {
+  const cards = carouselSpinner.querySelectorAll('.carousel-card');
+  const numCards = cards.length;
+  // Calculate the angle between each card
+  const theta = 360 / numCards;
+  // Calculate the radius (distance from center) based on card width (340px approx)
+  const baseRadius = Math.round((340 / 2) / Math.tan(Math.PI / numCards));
+  const expandedRadius = baseRadius + 180; // Expand the circle significantly
+
+  // Position each card
+  cards.forEach((card, i) => {
+    card.style.transform = `rotateY(${i * theta}deg) translateZ(${expandedRadius}px)`;
+  });
+
+  let currentAngle = 0;
+  let isDragging = false;
+  let startX = 0;
+  let lastX = 0;
+  let autoRotateSpeed = 0.06; // Slowed down from 0.2
+  let animationFrameId;
+
+  // Auto-rotate loop
+  const rotateCarousel = () => {
+    if (!isDragging) {
+      currentAngle -= autoRotateSpeed;
+      carouselSpinner.style.transform = `rotateY(${currentAngle}deg)`;
+    }
+    animationFrameId = requestAnimationFrame(rotateCarousel);
+  };
+  rotateCarousel();
+
+  // Drag Events
+  const onDragStart = (e) => {
+    isDragging = true;
+    startX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+    lastX = startX;
+    carouselSpinner.style.transition = 'none'; // Disable transition for instant follow
+  };
+
+  const onDragMove = (e) => {
+    if (!isDragging) return;
+    const currentX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+    const deltaX = currentX - lastX;
+    // Calculate rotation: deltaX controls rotation speed
+    currentAngle += deltaX * 0.5;
+    carouselSpinner.style.transform = `rotateY(${currentAngle}deg)`;
+    lastX = currentX;
+  };
+
+  const onDragEnd = () => {
+    isDragging = false;
+    carouselSpinner.style.transition = 'transform 0.1s ease-out';
+  };
+
+  carouselContainer.addEventListener('mousedown', onDragStart);
+  window.addEventListener('mousemove', onDragMove);
+  window.addEventListener('mouseup', onDragEnd);
+
+  carouselContainer.addEventListener('touchstart', onDragStart, { passive: true });
+  window.addEventListener('touchmove', onDragMove, { passive: true });
+  window.addEventListener('touchend', onDragEnd);
 }
 
 /* ─── 3. MOBILE MENU ─── */
