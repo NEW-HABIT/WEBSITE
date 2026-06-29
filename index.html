@@ -35,9 +35,7 @@
       <a href="#contact"    class="sn-link" data-label="Contact"     id="snContact">06</a>
     </nav>
     <div class="sn-bottom">
-      <button class="sn-icon theme-toggle" id="themeToggleDesk" aria-label="Toggle Theme">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-      </button>
+
       <a href="https://github.com/NEW-HABIT" target="_blank" rel="noopener" class="sn-icon scramble-text" aria-label="GitHub">GH</a>
       <a href="https://linkedin.com/in/Barshan-adhikari" target="_blank" rel="noopener" class="sn-icon scramble-text" aria-label="LinkedIn">IN</a>
       <a href="mailto:barshanadhikari181@gmail.com" class="sn-icon scramble-text" aria-label="Email">@</a>
@@ -48,9 +46,7 @@
   <header class="mob-header" id="mobHeader">
     <a href="#hero" class="mob-brand">BA</a>
     <div class="mob-actions">
-      <button class="theme-toggle" id="themeToggleMob" aria-label="Toggle Theme">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-      </button>
+
       <button class="mob-toggle" id="mobToggle" aria-label="Menu">
         <span></span><span></span>
       </button>
@@ -240,6 +236,8 @@
 
         <div class="carousel-container" id="carouselContainer">
           <div class="carousel-spinner" id="carouselSpinner">
+            <!-- The visible central pole -->
+            <div class="carousel-axis"></div>
 
             <!-- Project 01 -->
             <div class="proj-card-b carousel-card proj-trigger" 
@@ -248,16 +246,20 @@
                  data-tech="Vision Transformer,XAI / SHAP,PyTorch,OpenCV"
                  data-desc="Presented at the IEEE International Conference on Computing and Communications 2025. This project introduces a Vision Transformer model enhanced with Explainable AI techniques to classify crop quality. By integrating SHAP, we generated visual explanations that help farmers and domain experts understand and trust the model's decisions, rather than relying on a 'black box'."
                  data-gh="https://github.com/NEW-HABIT/TOMATO-POTATO_QUALITY_CHECKER"
-                 data-demo="https://huggingface.co/spaces/NEW-HABIT/Crop-Checker">
-              <div class="pcb-number">01</div>
-              <div class="pcb-img-placeholder">
+                 data-demo="https://tomato-potato-quality-checker.onrender.com/">
+              <div class="pcb-img-top">
+                 <div class="pcb-gradient-overlay"></div>
                  <div class="img-content">[ Vision Transformer UI Preview ]</div>
+                 <div class="pcb-badge-neon">Deep Learning</div>
               </div>
-              <div class="pcb-badge">Deep Learning</div>
-              <h3 class="pcb-title hover-scramble-word">Tomato &amp; Potato Quality Checker</h3>
-              <p class="pcb-desc">Vision Transformer (ViT) model that classifies crop quality. Integrated XAI to increase model transparency.</p>
-              <div class="pcb-tech"><span>Vision Transformer</span><span>XAI</span><span>PyTorch</span></div>
-              <div class="pcb-link">Explore Case Study →</div>
+              <div class="pcb-content">
+                <h3 class="pcb-title">Tomato &amp; Potato Quality Checker</h3>
+                <p class="pcb-desc">Vision Transformer (ViT) model that classifies crop quality. Integrated XAI to increase model transparency.</p>
+                <div class="pcb-tech"><span>Vision Transformer</span><span>XAI</span><span>PyTorch</span></div>
+                <div class="pcb-actions">
+                  <span class="btn-neon">Read More →</span>
+                </div>
+              </div>
             </div>
 
             <!-- Project 02 -->
@@ -268,15 +270,19 @@
                  data-desc="A robust Multi-class CNN model utilizing MobileNetV2 architecture. Trained extensively to identify over 30 different classes of fruits and vegetables with high precision. The model is optimized for mobile deployment, ensuring fast inference times across diverse lighting conditions and environments without sacrificing performance."
                  data-gh="https://github.com/NEW-HABIT/VEGETABLE-FRUIT-CLASSIFIER"
                  data-demo="https://vegfruitclassifire-ba.streamlit.app/">
-              <div class="pcb-number">02</div>
-              <div class="pcb-img-placeholder">
+              <div class="pcb-img-top">
+                 <div class="pcb-gradient-overlay"></div>
                  <div class="img-content">[ Veg & Fruit Classifier CNN ]</div>
+                 <div class="pcb-badge-neon">Classification Model</div>
               </div>
-              <div class="pcb-badge">Classification Model</div>
-              <h3 class="pcb-title hover-scramble-word">Vegetable &amp; Fruit Classifier</h3>
-              <p class="pcb-desc">Multi-class CNN (MobileNetV2/VGG) model trained to identify 30+ fruits and vegetables with high precision.</p>
-              <div class="pcb-tech"><span>CNN</span><span>MobileNetV2</span><span>TensorFlow</span></div>
-              <div class="pcb-link">Explore Case Study →</div>
+              <div class="pcb-content">
+                <h3 class="pcb-title">Vegetable &amp; Fruit Classifier</h3>
+                <p class="pcb-desc">Multi-class CNN (MobileNetV2/VGG) model trained to identify 30+ fruits and vegetables with high precision.</p>
+                <div class="pcb-tech"><span>CNN</span><span>MobileNetV2</span><span>TensorFlow</span></div>
+                <div class="pcb-actions">
+                  <span class="btn-neon">Read More →</span>
+                </div>
+              </div>
             </div>
 
             <!-- Project 03 -->
@@ -286,16 +292,20 @@
                  data-tech="Deep Learning,Streamlit,Object Detection,Python"
                  data-desc="A clinical-grade deep learning retinal scan analyser designed for early detection of eye cancer. It features 40% faster processing compared to baseline models, 25% better tumor localisation, and reduces manual diagnosis time by 20%. The entire pipeline is wrapped in an accessible Streamlit web application for easy use by medical professionals."
                  data-gh="https://github.com/NEW-HABIT/EYE-CANCER-PREDICTION-MODEL"
-                 data-demo="https://eye-cancer-prediction.streamlit.app/">
-              <div class="pcb-number">03</div>
-              <div class="pcb-img-placeholder eye">
-                  <div class="img-content">[ Eye Cancer Retina Scan AI ]</div>
+                 data-demo=>
+              <div class="pcb-img-top eye">
+                 <div class="pcb-gradient-overlay"></div>
+                 <div class="img-content">[ Eye Cancer Retina Scan AI ]</div>
+                 <div class="pcb-badge-neon">Healthcare Model</div>
               </div>
-              <div class="pcb-badge">Healthcare Model</div>
-              <h3 class="pcb-title hover-scramble-word">Eye Cancer Prediction</h3>
-              <p class="pcb-desc">Deep learning retinal scan analyser with 40% faster processing and 25% better localisation. Deployed on Streamlit.</p>
-              <div class="pcb-tech"><span>Deep Learning</span><span>Streamlit</span></div>
-              <div class="pcb-link">Explore Case Study →</div>
+              <div class="pcb-content">
+                <h3 class="pcb-title">Eye Cancer Prediction</h3>
+                <p class="pcb-desc">Deep learning retinal scan analyser with 40% faster processing and 25% better localisation. Deployed on Streamlit.</p>
+                <div class="pcb-tech"><span>Deep Learning</span><span>Streamlit</span></div>
+                <div class="pcb-actions">
+                  <span class="btn-neon">Read More →</span>
+                </div>
+              </div>
             </div>
 
             <!-- Project 04 -->
@@ -305,38 +315,69 @@
                  data-tech="CNN,AI,OpenCV,TensorFlow,Smart System"
                  data-desc="An intelligent system for emergency traffic control using AI and computer vision with real-time monitoring capabilities. It detects emergency vehicles and adjusts traffic signals accordingly, ensuring a clear path for response. It leverages CNNs for vehicle detection and TensorFlow for real-time decision-making."
                  data-gh="https://github.com/NEW-HABIT/INTELLIGENT_TRAFIC_EMERGENCY_CONTROL_SYSTEM"
-                 data-demo="">
-              <div class="pcb-number">04</div>
-              <div class="pcb-img-placeholder">
+                 data-demo="https://intelligent-trafic-emergency-control.onrender.com/">
+              <div class="pcb-img-top">
+                 <div class="pcb-gradient-overlay"></div>
                  <div class="img-content">[ AI Traffic Control ]</div>
+                 <div class="pcb-badge-neon">Smart City AI</div>
               </div>
-              <div class="pcb-badge">Smart City AI</div>
-              <h3 class="pcb-title hover-scramble-word">Intelligent Traffic Emergency Control</h3>
-              <p class="pcb-desc">Emergency traffic control system using computer vision and CNNs to detect and prioritize emergency vehicles.</p>
-              <div class="pcb-tech"><span>CNN</span><span>OpenCV</span><span>TensorFlow</span></div>
-              <div class="pcb-link">Explore Case Study →</div>
+              <div class="pcb-content">
+                <h3 class="pcb-title">Intelligent Traffic Emergency Control</h3>
+                <p class="pcb-desc">Emergency traffic control system using computer vision and CNNs to detect and prioritize emergency vehicles.</p>
+                <div class="pcb-tech"><span>CNN</span><span>OpenCV</span><span>TensorFlow</span></div>
+                <div class="pcb-actions">
+                  <span class="btn-neon">Read More →</span>
+                </div>
+              </div>
             </div>
-
-            <!
-            <div class="proj-card-b carousel-card proj-trigger"
+            <!--project 05-->
+            <div class="proj-card-b carousel-card proj-trigger" 
                  data-num="Project 05" 
                  data-title="ASL SIGN LANGUAGE DETECTOR"
                  data-tech="CNN,image processing,OpenCV,MediaPipe"
                  data-desc="Real-time detection and translation of American Sign Language using computer vision and deep learning."
                  data-gh="https://github.com/NEW-HABIT/SIGN_LANGUAGE"
                  data-demo="https://signlanguage-nrxrbofyuqhe4iyujsoais.streamlit.app/">
-              <div class="pcb-number">05</div>
-              <div class="pcb-img-placeholder">
-                 <div class="img-content">[Asl Detector]</div>
+              <div class="pcb-img-top">
+                 <div class="pcb-gradient-overlay"></div>
+                 <div class="img-content">[ ASL Sign Language AI ]</div>
+                 <div class="pcb-badge-neon">Computer Vision</div>
               </div>
-              <div class="pcb-badge">Prediction Model</div>
-              <h3 class="pcb-title hover-scramble-word">ASL Sign Language Detector</h3>
-              <p class="pcb-desc">Real-time detection and translation of American Sign Language using computer vision and deep learning.</p>
-              <div class="pcb-tech"><span>CNN</span><span>OpenCV</span><span>MediaPipe</span></div>
-              <div class="pcb-link">Explore Case Study →</div>
+              <div class="pcb-content">
+                <h3 class="pcb-title">ASL SIGN LANGUAGE DETECTOR</h3>
+                <p class="pcb-desc">Real-time detection and translation of American Sign Language using computer vision and deep learning.</p>
+                <div class="pcb-tech"><span>CNN</span><span>OpenCV</span><span>MediaPipe</span></div>
+                <div class="pcb-actions">
+                  <span class="btn-neon">Read More →</span>
+                </div>
+              </div>
             </div>
-
-
+            <!--project next-->
+            <!--
+              <div class="proj-card-b carousel-card proj-trigger"
+                 data-num="Project 06" 
+                 data-title="AI-BASED FACE MASK DETECTION"
+                 data-tech="CNN,OpenCV,TensorFlow,Deep Learning"
+                 data-desc="A deep learning model for real-time face mask detection to ensure public safety during pandemics."
+                 data-gh="https://github.com/NEW-HABIT/FACE_MASK_DETECTION"
+                 data-demo="https://face-mask-detector.onrender.com/">
+              <div class="pcb-img-top">
+                 <div class="pcb-gradient-overlay"></div>
+                 <div class="img-content">[Face Mask Detection]</div>
+                 <div class="pcb-badge-neon">Safety Model</div>
+              </div>
+              <div class="pcb-content">
+                <h3 class="pcb-title">AI-Based Face Mask Detection</h3>
+                <p class="pcb-desc">A deep learning model for real-time face mask detection to ensure public safety during pandemics.</p>
+                <div class="pcb-tech"><span>CNN</span><span>OpenCV</span><span>TensorFlow</span></div>
+                <div class="pcb-actions">
+                  <span class="btn-neon">Read More →</span>
+                </div>
+              </div>
+            </div>
+            -->
+ 
+        
           </div>
         </div>
 

@@ -34,26 +34,7 @@
   --sidebar-w:  80px;
 }
 
-body.light-theme {
-  --bg:         #aab4be; /* bluish white mix */
-  --bg-dark:    #e2e8f056; /* bluish grey */
-  --bg-card:    #98d2e5;
-  --bg-card-h:  #4489cec0;
 
-  --text:       #0e2446;
-  --text-muted: #067dfb;
-  --text-dim:   #64748b;
-  
-  --lime:       #ff0000;
-  --lime-dim:   rgba(153, 204, 0, 0.15);
-  
-  --border:     #416085;
-  --border-l:   #94a3b8;
-  
-  --grad-1:     #475569; /* bluish grey */
-  --grad-2:     #0c0c0c2e; /* white */
-  --grad-3:     #3f4e62;
-}
 
 /* ─── RESET ─── */
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -80,10 +61,7 @@ body {
   border-radius: 50%;
   animation: fall linear infinite;
 }
-body.light-theme .snow-flake {
-  background: #01aef2;
-  box-shadow: 0 0 8px 2px rgba(100, 116, 139, 0.5), 0 0 15px 5px rgba(100, 116, 139, 0.2);
-}
+
 @keyframes fall {
   0% { transform: translateY(-20px) translateX(0px) rotate(0deg); opacity: 0; }
   10% { opacity: var(--o, 0.8); }
@@ -191,7 +169,7 @@ body.hovering .cur-ring {
 .sn-bottom { display: flex; flex-direction: column; gap: 1.5rem; align-items: center; }
 .sn-icon { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); transition: color 0.3s; display: flex; align-items: center; justify-content: center; }
 .sn-icon:hover { color: var(--lime); }
-.theme-toggle { margin-bottom: 0.5rem; }
+
 
 /* ─── MOBILE HEADER & DRAWER ─── */
 .mob-header { display: none; }
@@ -202,9 +180,24 @@ body.hovering .cur-ring {
 
 .pg-section { padding: 8rem 0; position: relative; border-bottom: 1px solid var(--border); transition: border-color 0.3s; }
 .pg-dark { background: var(--bg-dark); transition: background 0.3s; }
-.pg-inner { max-width: 1000px; margin: 0 auto; padding: 0 4rem; }
+.pg-inner { max-width: 1000px; margin: 0 auto; padding: 0 4rem; position: relative; }
 
-.pg-label { display: flex; align-items: center; gap: 1rem; margin-bottom: 4rem; }
+/* Sticky Container for Projects */
+#projects {
+  height: 300vh; /* creates scrollable space */
+  padding: 0; /* remove default padding so sticky works cleanly */
+}
+#projects .pg-inner {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.pg-label { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
 .pg-num { font-family: var(--font-mono); font-size: 0.75rem; color: var(--lime); }
 .pg-title { font-family: var(--font-disp); font-size: 1.1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
 
@@ -346,6 +339,18 @@ body.hovering .cur-ring {
   transition: transform 0.1s ease-out;
 }
 
+.carousel-axis {
+  position: absolute;
+  top: -2000px;
+  bottom: -2000px;
+  left: 50%;
+  width: 2px;
+  margin-left: -1px;
+  background: var(--lime);
+  box-shadow: 0 0 10px var(--lime), 0 0 30px var(--lime-glow);
+  transform: translateZ(0); 
+}
+
 .carousel-card {
   position: absolute;
   top: 0; left: 0;
@@ -353,26 +358,91 @@ body.hovering .cur-ring {
   /* Set by JS: transform: rotateY(angle) translateZ(radius); */
 }
 
-/* Card Base Styles */
-.proj-card-b { border: 1px solid var(--border); background: var(--bg-card); padding: 2rem; display: flex; flex-direction: column; transition: border-color 0.3s, background 0.3s; }
-.proj-card-b:hover { border-color: var(--border-l); background: var(--bg-card-h); }
-.pcb-number { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; transition: border-color 0.3s; }
-.pcb-img-placeholder { height: 160px; background: var(--bg-dark); margin-bottom: 2rem; position: relative; overflow: hidden; border: 1px solid var(--border); transition: border-color 0.3s, background 0.3s; }
-.proj-card-b:hover .pcb-img-placeholder { border-color: var(--border-l); }
-.pcb-badge { position: absolute; top: 1rem; right: 1rem; background: var(--bg); border: 1px solid var(--border); font-family: var(--font-mono); font-size: 0.65rem; padding: 0.3rem 0.6rem; color: var(--lime); z-index: 2; transition: background 0.3s, border-color 0.3s; }
-.pcb-title { font-family: var(--font-disp); font-size: 1.4rem; margin-bottom: 1rem; }
-.pcb-desc { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.5rem; flex: 1; }
+/* Futuristic Glassmorphism Card Styles */
+.proj-card-b { 
+  background: rgba(15, 15, 20, 0.4); 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(204, 255, 0, 0.15); 
+  border-radius: 20px; 
+  display: flex; 
+  flex-direction: column; 
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+.proj-card-b:hover { 
+  transform: scale(1.02);
+  border-color: rgba(204, 255, 0, 0.4); 
+  box-shadow: 0 15px 40px rgba(204, 255, 0, 0.15), inset 0 0 20px rgba(204, 255, 0, 0.1);
+}
+.pcb-img-top { 
+  height: 180px; 
+  position: relative; 
+  background: #080808; 
+  overflow: hidden;
+}
+.pcb-gradient-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(15,15,20,0.9) 100%);
+  z-index: 1;
+}
+.img-content { 
+  position: absolute; inset: 0; 
+  display: flex; align-items: center; justify-content: center; 
+  font-family: var(--font-mono); font-size: 0.8rem; color: rgba(255,255,255,0.2); 
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+.pcb-badge-neon { 
+  position: absolute; top: 1rem; right: 1rem; z-index: 2;
+  background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px);
+  border: 1px solid rgba(204, 255, 0, 0.3); border-radius: 20px;
+  font-family: var(--font-mono); font-size: 0.65rem; padding: 0.3rem 0.8rem; 
+  color: var(--lime); text-shadow: 0 0 8px rgba(204, 255, 0, 0.5);
+}
+.pcb-content {
+  padding: 1.5rem;
+  display: flex; flex-direction: column; flex: 1;
+  position: relative; z-index: 2;
+}
+.pcb-title { font-family: var(--font-disp); font-size: 1.3rem; margin-bottom: 0.5rem; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+.pcb-desc { color: rgba(255,255,255,0.7); font-size: 0.85rem; margin-bottom: 1.5rem; flex: 1; line-height: 1.6; }
 .pcb-tech { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
-.pcb-tech span { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-dim); border: 1px solid var(--border); padding: 0.2rem 0.5rem; transition: border-color 0.3s; }
-.pcb-link { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text); transition: color 0.3s; border-bottom: 1px solid var(--border); padding-bottom: 4px; align-self: flex-start; }
-.proj-card-b:hover .pcb-link { color: var(--lime); border-color: var(--lime); }
+.pcb-tech span { 
+  font-family: var(--font-mono); font-size: 0.6rem; 
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); 
+  border-radius: 4px; padding: 0.3rem 0.6rem; color: rgba(255,255,255,0.8);
+}
+.pcb-actions { display: flex; gap: 0.8rem; }
+.btn-neon {
+  font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase;
+  padding: 0.6rem 1rem; border-radius: 8px; cursor: pointer;
+  background: rgba(204, 255, 0, 0.1);
+  color: var(--lime); border: 1px solid rgba(204, 255, 0, 0.3); font-weight: 600;
+  box-shadow: 0 0 15px rgba(204, 255, 0, 0.1);
+  transition: all 0.3s ease; text-align: center; flex: 1; text-decoration: none; display: inline-block;
+}
+.btn-neon:hover {
+  transform: translateY(-2px);
+  background: var(--lime); color: #000;
+  box-shadow: 0 0 20px rgba(204, 255, 0, 0.4); 
+}
+.btn-neon.outline {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: none; color: rgba(255,255,255,0.9);
+}
+.btn-neon.outline:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.4);
+}
 
 
 /* ═════ MODAL ═════ */
 .modal { position: fixed; inset: 0; z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s; padding: 2rem; }
 .modal.open { opacity: 1; visibility: visible; }
 .modal-bg { position: absolute; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); }
-body.light-theme .modal-bg { background: rgba(255,255,255,0.85); }
+
 .modal-content { position: relative; background: var(--bg); border: 1px solid var(--border); max-width: 1000px; width: 100%; max-height: 90vh; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; transform: translateY(20px); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s, border-color 0.3s; }
 .modal.open .modal-content { transform: translateY(0); }
 
@@ -481,7 +551,7 @@ body.light-theme .modal-bg { background: rgba(255,255,255,0.85); }
   .mob-brand { font-family: var(--font-disp); font-size: 1.2rem; font-weight: 800; }
   
   .mob-actions { display: flex; gap: 1rem; align-items: center; }
-  .theme-toggle { color: var(--text); }
+
   
   .mob-toggle { background: none; border: none; display: flex; flex-direction: column; gap: 6px; width: 30px; cursor: pointer; }
   .mob-toggle span { display: block; height: 2px; width: 100%; background: var(--text); transition: 0.3s; }

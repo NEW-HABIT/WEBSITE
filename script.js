@@ -5,35 +5,7 @@
 
 'use strict';
 
-/* ─── 0. THEME TOGGLE ─── */
-const themeBtns = [document.getElementById('themeToggleDesk'), document.getElementById('themeToggleMob')];
-const moonIcon = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
-const sunIcon = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="19.36" x2="19.78" y2="20.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
 
-// Load saved theme
-if (localStorage.getItem('theme') === 'light') {
-  document.body.classList.add('light-theme');
-  document.body.classList.remove('dark-theme');
-  themeBtns.forEach(btn => { if (btn) btn.innerHTML = sunIcon; });
-}
-
-themeBtns.forEach(btn => {
-  if (!btn) return;
-  btn.addEventListener('click', () => {
-    const isLight = document.body.classList.contains('light-theme');
-    if (isLight) {
-      document.body.classList.remove('light-theme');
-      document.body.classList.add('dark-theme');
-      localStorage.setItem('theme', 'dark');
-      themeBtns.forEach(b => { if (b) b.innerHTML = moonIcon; });
-    } else {
-      document.body.classList.add('light-theme');
-      document.body.classList.remove('dark-theme');
-      localStorage.setItem('theme', 'light');
-      themeBtns.forEach(b => { if (b) b.innerHTML = sunIcon; });
-    }
-  });
-});
 
 /* ─── 0.5 SNOWFALL ─── */
 const initSnow = () => {
@@ -170,70 +142,62 @@ document.querySelectorAll('.proj-card-b:not(.carousel-card), .proj-hero').forEac
   });
 });
 
-/* ─── 2.6 3D CAROUSEL LOGIC ─── */
+/* ─── 2.6 3D SCROLL HELIX CAROUSEL LOGIC ─── */
+const projectsSection = document.getElementById('projects');
 const carouselContainer = document.getElementById('carouselContainer');
 const carouselSpinner = document.getElementById('carouselSpinner');
-if (carouselContainer && carouselSpinner) {
+
+if (projectsSection && carouselContainer && carouselSpinner) {
   const cards = carouselSpinner.querySelectorAll('.carousel-card');
   const numCards = cards.length;
-  // Calculate the angle between each card
-  const theta = 360 / numCards;
-  // Calculate the radius (distance from center) based on card width (340px approx)
-  const baseRadius = Math.round((340 / 2) / Math.tan(Math.PI / numCards));
-  const expandedRadius = baseRadius + 180; // Expand the circle significantly
+  // Angle between each card
+  const theta = 60; // 6 cards * 60 = 360 (one full wrap around the pole)
+  const stepHeight = 250; // Vertical distance between each stair
+  const expandedRadius = 350; // Distance from the central pole
 
-  // Position each card
+  // Position each card in a Helix
   cards.forEach((card, i) => {
-    card.style.transform = `rotateY(${i * theta}deg) translateZ(${expandedRadius}px)`;
+    // rotateY for horizontal angle, translateY for vertical stair step
+    card.style.transform = `rotateY(${i * theta}deg) translateY(${i * stepHeight}px) translateZ(${expandedRadius}px)`;
   });
 
+  // Track current/target for smooth interpolation
   let currentAngle = 0;
-  let isDragging = false;
-  let startX = 0;
-  let lastX = 0;
-  let autoRotateSpeed = 0.06; // Slowed down from 0.2
-  let animationFrameId;
+  let targetAngle = 0;
+  let currentY = 0;
+  let targetY = 0;
 
-  // Auto-rotate loop
-  const rotateCarousel = () => {
-    if (!isDragging) {
-      currentAngle -= autoRotateSpeed;
-      carouselSpinner.style.transform = `rotateY(${currentAngle}deg)`;
-    }
-    animationFrameId = requestAnimationFrame(rotateCarousel);
+  // Smooth scroll interpolation
+  const renderWheel = () => {
+    // Lerp (Linear Interpolation) for smooth settling
+    currentAngle += (targetAngle - currentAngle) * 0.05;
+    currentY += (targetY - currentY) * 0.05;
+    
+    // Apply vertical translation FIRST, then rotate
+    carouselSpinner.style.transform = `translateY(${currentY}px) rotateY(${currentAngle}deg)`;
+    
+    requestAnimationFrame(renderWheel);
   };
-  rotateCarousel();
+  requestAnimationFrame(renderWheel);
 
-  // Drag Events
-  const onDragStart = (e) => {
-    isDragging = true;
-    startX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
-    lastX = startX;
-    carouselSpinner.style.transition = 'none'; // Disable transition for instant follow
-  };
+  // Update targets on scroll based on section progress
+  window.addEventListener('scroll', () => {
+    const rect = projectsSection.getBoundingClientRect();
+    const maxScroll = rect.height - window.innerHeight;
+    
+    // Calculate progress from 0 to 1
+    let progress = -rect.top / maxScroll;
+    progress = Math.max(0, Math.min(1, progress));
+    
+    // We want the last card to be centered when progress is 1
+    const totalRotation = (numCards - 1) * theta;
+    const totalY = (numCards - 1) * stepHeight;
 
-  const onDragMove = (e) => {
-    if (!isDragging) return;
-    const currentX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
-    const deltaX = currentX - lastX;
-    // Calculate rotation: deltaX controls rotation speed
-    currentAngle += deltaX * 0.5;
-    carouselSpinner.style.transform = `rotateY(${currentAngle}deg)`;
-    lastX = currentX;
-  };
+    targetAngle = -(progress * totalRotation);
+    targetY = -(progress * totalY);
+  }, { passive: true });
 
-  const onDragEnd = () => {
-    isDragging = false;
-    carouselSpinner.style.transition = 'transform 0.1s ease-out';
-  };
-
-  carouselContainer.addEventListener('mousedown', onDragStart);
-  window.addEventListener('mousemove', onDragMove);
-  window.addEventListener('mouseup', onDragEnd);
-
-  carouselContainer.addEventListener('touchstart', onDragStart, { passive: true });
-  window.addEventListener('touchmove', onDragMove, { passive: true });
-  window.addEventListener('touchend', onDragEnd);
+  // Removed propagation stop since we now want btn-neon ("Read More") to open the modal
 }
 
 /* ─── 3. MOBILE MENU ─── */
